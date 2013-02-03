@@ -23,14 +23,15 @@ class Typing
 		return null;
 	}
 
-	public static function spin_type($text)
+	public static function spin_type($text, $delay_in_sec=0.05)
 	{
+		if(! is_numeric($delay_in_sec)) $delay_in_sec = 0.05;
 		$text = str_replace("\r", "", $text);
 		$arr = str_split($text);
 		foreach($arr as $char)
 		{
 			echo $char;
-			static::spin(2, 0.05);
+			static::spin(2, $delay_in_sec);
 		}
 		return null;
 	}

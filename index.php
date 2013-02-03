@@ -3,17 +3,7 @@
 include('clib/base.php');
 
 
-var_dump(Get::argv('-f'));
-die();
-
 Route::add('main', function() {
-
-	$arr = array(
-		array('dasdas', 'das'),
-		array('dads', 'dasdas'),
-		array('ds', 'da'),
-		);
-	echo Draw::two_columns($arr, 3);
 
 	$menu = array(
 		'add' => 'Add item',
@@ -23,24 +13,22 @@ Route::add('main', function() {
 	echo Type::choice_char($menu);
 	$route = Get::choice_char($menu, true);
 
-
-	//echo $route;
 	return Route::run($route);
 
 });
 
 Route::add('add', function() {
 
-	echo "example add()\n";
-	Typing::spin_type('sdf65f4sd56f45s6df456sdf
-		sdf564sdf564sdf654sdf6
-		56sd4f564sdf564s56df4
-');
+	echo Draw::box("example add()");
+	Typing::spin_type('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 0.03);
 	return Route::run('main');
 
 });
 
 Route::add('remove', function() {
+
+
+	echo Draw::box("example remove()");
 
 	$tb = Table::create();
 	$tb->add_row('one', 'orange', 'be')
@@ -49,7 +37,6 @@ Route::add('remove', function() {
 		->set_col_align('center', array(1, 3));
 	echo $tb->generate();
 
-	echo "example remove()\n";
 	return Route::run('main');
 
 });
@@ -60,8 +47,6 @@ Route::add('exit', function() {
 	exit;
 
 });
-
-//echo Route::lst();
 
 Route::init('main');
 
