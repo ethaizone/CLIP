@@ -10,7 +10,7 @@ Route::add('main', function() {
 		'remove' => 'Remove item',
 		'exit' => 'Exit Program'
 	);
-	echo Type::choice_char($menu);
+	echo Draw::box(Type::choice_char($menu), 1);
 	$route = Get::choice_char($menu, true);
 
 	if($route == 'exit')

@@ -2,19 +2,33 @@
 
 class Draw
 {
-	public static function box($string, $char = "#", $border = 0)
+	public static function box($string, $border = 0, $char = "#")
 	{
 		if(! is_int($border)) $border = 0;
-		$len = strlen($string);
-		$line = static::line($char, $len+2+($border*2))."\n";
-		$line_space = '';
-		for ($i=0; $i < 1; $i++) {
-			$line_space .= $char.static::line(' ', $len+($border*2)).$char."\n";
+
+		$text = str_replace("\r", "", trim($string));
+		$lines = explode("\n", $text);
+
+		$max_width = '';
+		foreach ($lines as $line)
+		{
+			$max_width = strlen($line) > $max_width ? strlen($line) : $max_width;
 		}
 
-		return $line.$line_space.
-		$char.static::line(' ', $border).$string.static::line(' ', $border).$char."\n"
-		.$line_space.$line;
+		$line_char = static::line($char, $max_width+2+($border*2))."\n";
+		$line_space = '';
+		for ($i=0; $i < $border; $i++) {
+			$line_space .= $char.static::line(' ', $max_width+($border*2)).$char."\n";
+		}
+
+		$lines_text = '';
+		foreach ($lines as $line)
+		{
+			$len = strlen($line);
+			$lines_text .= $char.static::line(' ', $border).$line.static::line(' ', $border+($max_width-$len)).$char."\n";
+		}
+
+		return $line_char.$line_space.$lines_text.$line_space.$line_char;
 	}
 
 	public static function line($char="", $time=0)
