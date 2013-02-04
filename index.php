@@ -1,6 +1,6 @@
 <?php
 
-include('clib/base.php');
+include('clip/base.php');
 
 
 Route::add('main', function() {
@@ -12,6 +12,9 @@ Route::add('main', function() {
 	);
 	echo Type::choice_char($menu);
 	$route = Get::choice_char($menu, true);
+
+	if($route == 'exit')
+		return Route::run($route, array('Exit right now'));
 
 	return Route::run($route);
 
@@ -34,16 +37,17 @@ Route::add('remove', function() {
 	$tb->add_row('one', 'orange', 'be')
 		->add_row(array('bananas','two', 'monkey'))
 		->set_col_width(10, array(1, 3))
-		->set_col_align('center', array(1, 3));
+		->set_col_align('center', array(1))
+		->set_col_align('right', array(3));
 	echo $tb->generate();
 
 	return Route::run('main');
 
 });
 
-Route::add('exit', function() {
+Route::add('exit', function($text) {
 
-	echo "hola!\n";
+	echo $text." - hola!\n";
 	exit;
 
 });
