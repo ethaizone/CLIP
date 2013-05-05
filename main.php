@@ -5,6 +5,8 @@ include('clip/base.php');
 
 Route::add('main', function() {
 
+	echo Draw::box(Route::breadcrumb());
+
 	echo Write::number(50);
 
 	$menu = array(
@@ -19,30 +21,37 @@ Route::add('main', function() {
 	if($route == 'exit')
 		return Route::run($route, array('Exit right now'));
 
-	return Route::run($route);
+	return Route::run($route, array(), TRUE);
 
 });
 
 Route::add('add', function() {
 
+	echo Draw::box(Route::breadcrumb());
 	echo Draw::box("example add()");
 	Typing::spinType('Lorem ipsum dolor sit amet, consectetur', 0.03);
-	return Route::run('add2');
+	return Route::run('add2', array(), TRUE);
 
 });
 
 Route::add('add2', function() {
 
+	echo Draw::box(Route::breadcrumb());
+
 	echo Draw::box("example add2()");
 
-	$trace = debug_backtrace();
-	print_r($trace);
+
+	echo 'gmp_testbit(a, index)
+	';
+	//$trace = debug_backtrace();
+	//print_r($trace);
 
 	return Route::run('main');
 });
 
 Route::add('remove', function() {
 
+	echo Draw::box(Route::breadcrumb());
 
 	echo Draw::box("example remove()");
 
@@ -65,6 +74,7 @@ Route::add('exit', function($text) {
 
 });
 
+//Start main process
 Route::init('main');
 
 ?>
