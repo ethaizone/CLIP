@@ -36,7 +36,7 @@ class Get
 		return !empty($key) ? $key : FALSE;
 	}
 
-	public static function choice_number($choice, $until = FALSE)
+	public static function choiceNumber($choice, $until = FALSE)
 	{
 		$max = count($choice);
 		if($until !== FALSE)
@@ -62,10 +62,10 @@ class Get
 			}
 		}
 
-		return static::key_from_number($choice, $key);
+		return static::keyFromNumber($choice, $key);
 	}
 
-	public static function choice_char($choice, $until = FALSE, $case_sensitive = FALSE)
+	public static function choiceChar($choice, $until = FALSE, $case_sensitive = FALSE)
 	{
 		$max = count($choice);
 		$max_char = "A";
@@ -103,7 +103,7 @@ class Get
 		//Convert string to number
 		$key = ord(strtolower($key)) - 96;
 
-		return static::key_from_number($choice, $key);
+		return static::keyFromNumber($choice, $key);
 	}
 
 	/**
@@ -112,7 +112,7 @@ class Get
 	 * @param  integer $number Number
 	 * @return integer         Number of index
 	 */
-	private static function key_from_number($array, $number)
+	private static function keyFromNumber($array, $number)
 	{
 		//Return key of array as replacement of Number.
 		for($i = 1; $i <$number; $i++)

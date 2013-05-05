@@ -1,9 +1,9 @@
 <?php
 
-class Type {
+class Write {
 
 
-	public static function choice_number($list)
+	public static function choiceNumber($list)
 	{
 		$text = '';
 		$number = 1;
@@ -14,7 +14,7 @@ class Type {
 		return $text;
 	}
 
-	public static function choice_char($list)
+	public static function choiceChar($list)
 	{
 		$text = '';
 		$char = 'A';
@@ -25,7 +25,7 @@ class Type {
 		return $text;
 	}
 
-	public static function number($number, $length)
+	public static function number($number, $length=0)
 	{
 		return sprintf('%0'.$length.'d', $number);
 	}

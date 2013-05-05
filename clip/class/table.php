@@ -12,7 +12,7 @@ class Table
 		return $obj;
 	}
 
-	public function add_row($row_array)
+	public function addRow($row_array)
 	{
 		if(is_array($row_array))
 			$this->table[] = $row_array;
@@ -22,7 +22,7 @@ class Table
 		return $this;
 	}
 
-	public function set_col_width($width, $col_array)
+	public function setColWidth($width, $col_array)
 	{
 		foreach($col_array as $col)
 		{
@@ -31,7 +31,7 @@ class Table
 		return $this;
 	}
 
-	public function set_col_align($align, $col_array)
+	public function setColAlign($align, $col_array)
 	{
 		foreach($col_array as $col)
 		{

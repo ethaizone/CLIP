@@ -5,14 +5,17 @@ include('clip/base.php');
 
 Route::add('main', function() {
 
+	echo Write::number(50);
+
 	$menu = array(
 		'add' => 'Add item',
 		'remove' => 'Remove item',
 		'exit' => 'Exit Program'
 	);
-	echo Draw::box(Type::choice_char($menu), 1);
-	$route = Get::choice_char($menu, true);
+	echo Draw::box(Write::choiceChar($menu), 1);
+	$route = Get::choiceChar($menu, true);
 
+	//Example call route with parameter
 	if($route == 'exit')
 		return Route::run($route, array('Exit right now'));
 
@@ -23,9 +26,19 @@ Route::add('main', function() {
 Route::add('add', function() {
 
 	echo Draw::box("example add()");
-	Typing::spin_type('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 0.03);
-	return Route::run('main');
+	Typing::spinType('Lorem ipsum dolor sit amet, consectetur', 0.03);
+	return Route::run('add2');
 
+});
+
+Route::add('add2', function() {
+
+	echo Draw::box("example add2()");
+
+	$trace = debug_backtrace();
+	print_r($trace);
+
+	return Route::run('main');
 });
 
 Route::add('remove', function() {
@@ -34,11 +47,11 @@ Route::add('remove', function() {
 	echo Draw::box("example remove()");
 
 	$tb = Table::create();
-	$tb->add_row('one', 'orange', 'be')
-		->add_row(array('bananas','two', 'monkey'))
-		->set_col_width(10, array(1, 3))
-		->set_col_align('center', array(1))
-		->set_col_align('right', array(3));
+	$tb->addRow('one', 'orange', 'be')
+		->addRow(array('bananas','two', 'monkey'))
+		->setColWidth(10, array(1, 3))
+		->setColAlign('center', array(1))
+		->setColAlign('right', array(3));
 	echo $tb->generate();
 
 	return Route::run('main');

@@ -23,7 +23,7 @@ class Typing
 		return null;
 	}
 
-	public static function spin_type($text, $delay_in_sec=0.05)
+	public static function spinType($text, $delay_in_sec=0.05)
 	{
 		if(! is_numeric($delay_in_sec)) $delay_in_sec = 0.05;
 		$text = str_replace("\r", "", $text);
