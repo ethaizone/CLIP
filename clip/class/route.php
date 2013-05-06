@@ -104,7 +104,7 @@ class Route
 	 */
 	public static function Pause()
 	{
-		echo "Please any key to continue..";
+		echo "Press any key to continue..";
 		exec('pause');
 	}
 
