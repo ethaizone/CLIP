@@ -15,6 +15,7 @@ class Route
 	protected static $init = FALSE;
 	protected static $breadcrumb = array();
 	protected static $processed_route = array();
+	protected static $hook = array();
 
 	/**
 	 * Add function to Route for call later
@@ -46,7 +47,7 @@ class Route
 	}
 
 	/**
-	 * Inir route system to run first route and loop another route. (Until you call die or exit)
+	 * Init route system to run first route and loop another route. (Until you call die or exit)
 	 * @param  string $routeName  Route name
 	 * @param  array  $parameters parameter for pass to function in route
 	 * @return null
@@ -102,10 +103,24 @@ class Route
 	/**
 	 * Pause - Wait any keyboard to continue
 	 */
-	public static function Pause()
+	public static function pause()
 	{
 		echo "Press any key to continue..";
 		exec('pause');
+	}
+
+	/**
+	 * Add callback to hook and run on every route.
+	 * @param  string $method   When or where to run this hook.
+	 * @param  mixed $callback Callback function
+	 */
+	public static function hook($method, $callback)
+	{
+		/*
+		$allow_method = array('before', 'after', 'beforeExceptSub', 'afterExceptSub', 'beforeSubOnly', 'afterSubOnly');
+		if(in_array($method, $allow_method))
+			static::$hook[$method] = $callback;
+			*/
 	}
 
 	/**
